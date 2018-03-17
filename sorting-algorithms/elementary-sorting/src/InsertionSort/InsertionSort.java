@@ -5,36 +5,25 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class InsertionSort {
-    private static Scanner in;
-
-    public InsertionSort() {
-    }
+    private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println("Please decide if the array is random or not: \nr - for randomize data \ni - to input 5 numbers \n");
         String enteredVal = in.nextLine();
         int[] data = new int[5];
         if (!enteredVal.equals("")) {
-            byte var4 = -1;
-            switch(enteredVal.hashCode()) {
-                case 105:
-                    if (enteredVal.equals("i")) {
-                        var4 = 1;
-                    }
-                    break;
-                case 114:
-                    if (enteredVal.equals("r")) {
-                        var4 = 0;
-                    }
-            }
-
-            switch(var4) {
-                case 0:
+            switch(enteredVal) {
+                case "r":
                     RandomArray(data);
                     break;
-                case 1:
+                case "i":
                     InputArray(data);
+                    break;
+                default:
+                    break;
+
             }
+
         }
 
     }
@@ -59,20 +48,14 @@ public class InsertionSort {
 
     private static void InsertionSortAlgo(int[] data) {
         for(int x = 0; x < data.length; ++x) {
-            int tmp = data[x];
-
-            int j;
+            int tmp = data[x], j;
             for(j = x; j > 0 && tmp < data[j - 1]; --j) {
                 data[j] = data[j - 1];
             }
-
             data[j] = tmp;
         }
 
         System.out.println("Sorted Array values : " + Arrays.toString(data));
     }
 
-    static {
-        in = new Scanner(System.in);
-    }
 }
